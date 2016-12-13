@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the OPL external events feature.
+ */
+
+include_once 'opl_external_events.features.inc';
