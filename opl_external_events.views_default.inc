@@ -191,6 +191,326 @@ return $type;';
   $export['new_category_vocabulary_taxonomy_entity_references'] = $view;
 
   $view = new view();
+  $view->name = 'new_events_search_api_with_external';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'search_api_index_new_event_and_external_event_bundle';
+  $view->human_name = 'New events search api with external';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'item';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Rendered Content */
+  $handler->display->display_options['fields']['rendered_entity']['id'] = 'rendered_entity';
+  $handler->display->display_options['fields']['rendered_entity']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['rendered_entity']['field'] = 'rendered_entity';
+  $handler->display->display_options['fields']['rendered_entity']['label'] = '';
+  $handler->display->display_options['fields']['rendered_entity']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['rendered_entity']['link_to_entity'] = 1;
+  $handler->display->display_options['fields']['rendered_entity']['display'] = 'view';
+  $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'teaser';
+  $handler->display->display_options['fields']['rendered_entity']['bypass_access'] = 0;
+  /* Sort criterion: Indexed Content: Sticky in lists */
+  $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
+  /* Sort criterion: Indexed Content: Next upcoming date */
+  $handler->display->display_options['sorts']['search_api_aggregation_2']['id'] = 'search_api_aggregation_2';
+  $handler->display->display_options['sorts']['search_api_aggregation_2']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['sorts']['search_api_aggregation_2']['field'] = 'search_api_aggregation_2';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['operator'] = 'OR';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Fulltext search';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    15 => 0,
+    1 => 0,
+    24 => 0,
+    12 => 0,
+    14 => 0,
+    21 => 0,
+    26 => 0,
+    4 => 0,
+    17 => 0,
+    27 => 0,
+    30 => 0,
+    31 => 0,
+    33 => 0,
+    34 => 0,
+    35 => 0,
+    36 => 0,
+    37 => 0,
+    38 => 0,
+    39 => 0,
+    40 => 0,
+    41 => 0,
+    42 => 0,
+  );
+  /* Filter criterion: Indexed Content: Upcoming Event Dates */
+  $handler->display->display_options['filters']['upcoming_dates']['id'] = 'upcoming_dates';
+  $handler->display->display_options['filters']['upcoming_dates']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['upcoming_dates']['field'] = 'upcoming_dates';
+  $handler->display->display_options['filters']['upcoming_dates']['operator'] = '>=';
+  $handler->display->display_options['filters']['upcoming_dates']['value'] = 'now';
+  $handler->display->display_options['filters']['upcoming_dates']['group'] = 1;
+  /* Filter criterion: Indexed Content: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'external_event' => 'external_event',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 2;
+
+  /* Display: Events pane */
+  $handler = $view->new_display('panel_pane', 'Events pane', 'panel_pane_1');
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'masonry';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'item';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Search: Relevance */
+  $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['sorts']['search_api_relevance']['field'] = 'search_api_relevance';
+  $handler->display->display_options['sorts']['search_api_relevance']['order'] = 'DESC';
+  /* Sort criterion: Indexed Content: Sticky in lists */
+  $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['sorts']['sticky']['field'] = 'sticky';
+  $handler->display->display_options['sorts']['sticky']['order'] = 'DESC';
+  /* Sort criterion: Indexed Content: Next upcoming date */
+  $handler->display->display_options['sorts']['search_api_aggregation_2']['id'] = 'search_api_aggregation_2';
+  $handler->display->display_options['sorts']['search_api_aggregation_2']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['sorts']['search_api_aggregation_2']['field'] = 'search_api_aggregation_2';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Indexed Content: Next upcoming date */
+  $handler->display->display_options['filters']['search_api_aggregation_2']['id'] = 'search_api_aggregation_2';
+  $handler->display->display_options['filters']['search_api_aggregation_2']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['search_api_aggregation_2']['field'] = 'search_api_aggregation_2';
+  $handler->display->display_options['filters']['search_api_aggregation_2']['operator'] = '>=';
+  $handler->display->display_options['filters']['search_api_aggregation_2']['value'] = 'now';
+  $handler->display->display_options['filters']['search_api_aggregation_2']['group'] = 1;
+  /* Filter criterion: Indexed Content: Date(s) */
+  $handler->display->display_options['filters']['field_date_s_']['id'] = 'field_date_s_';
+  $handler->display->display_options['filters']['field_date_s_']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['field_date_s_']['field'] = 'field_date_s_';
+  $handler->display->display_options['filters']['field_date_s_']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_date_s_']['value'] = 'now';
+  $handler->display->display_options['filters']['field_date_s_']['group'] = 2;
+  /* Filter criterion: Indexed Content: Event status */
+  $handler->display->display_options['filters']['field_event_status']['id'] = 'field_event_status';
+  $handler->display->display_options['filters']['field_event_status']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['field_event_status']['field'] = 'field_event_status';
+  $handler->display->display_options['filters']['field_event_status']['operator'] = '<>';
+  $handler->display->display_options['filters']['field_event_status']['value'] = array(
+    'cancelled' => 'cancelled',
+  );
+
+  /* Display: Embed */
+  $handler = $view->new_display('embed', 'Embed', 'embed_1');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'search-result-item';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Rendered Content */
+  $handler->display->display_options['fields']['rendered_entity']['id'] = 'rendered_entity';
+  $handler->display->display_options['fields']['rendered_entity']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['rendered_entity']['field'] = 'rendered_entity';
+  $handler->display->display_options['fields']['rendered_entity']['label'] = '';
+  $handler->display->display_options['fields']['rendered_entity']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['rendered_entity']['link_to_entity'] = 1;
+  $handler->display->display_options['fields']['rendered_entity']['display'] = 'view';
+  $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'search_result';
+  $handler->display->display_options['fields']['rendered_entity']['bypass_access'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['operator'] = 'OR';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Fulltext search';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'text';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    15 => 0,
+    1 => 0,
+    24 => 0,
+    12 => 0,
+    14 => 0,
+    21 => 0,
+    26 => 0,
+    4 => 0,
+    17 => 0,
+    27 => 0,
+    30 => 0,
+    31 => 0,
+    33 => 0,
+    34 => 0,
+    35 => 0,
+    36 => 0,
+    37 => 0,
+    38 => 0,
+    39 => 0,
+    40 => 0,
+    41 => 0,
+    42 => 0,
+  );
+  /* Filter criterion: Indexed Content: Upcoming Event Dates */
+  $handler->display->display_options['filters']['upcoming_dates']['id'] = 'upcoming_dates';
+  $handler->display->display_options['filters']['upcoming_dates']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['upcoming_dates']['field'] = 'upcoming_dates';
+  $handler->display->display_options['filters']['upcoming_dates']['operator'] = '>=';
+  $handler->display->display_options['filters']['upcoming_dates']['value'] = 'now';
+  $handler->display->display_options['filters']['upcoming_dates']['group'] = 1;
+  /* Filter criterion: Indexed Content: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'external_event' => 'external_event',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 2;
+  /* Filter criterion: Indexed Content: Date(s) */
+  $handler->display->display_options['filters']['field_date_s_']['id'] = 'field_date_s_';
+  $handler->display->display_options['filters']['field_date_s_']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['field_date_s_']['field'] = 'field_date_s_';
+  $handler->display->display_options['filters']['field_date_s_']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_date_s_']['value'] = 'now';
+  $handler->display->display_options['filters']['field_date_s_']['group'] = 2;
+
+  /* Display: New internal-external facet for event language */
+  $handler = $view->new_display('search_api_views_facets_block', 'New internal-external facet for event language', 'search_api_views_facets_block_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Language';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['block_description'] = 'New internal-external event facet block -- language';
+  $handler->display->display_options['facet_field'] = 'field_event_language';
+
+  /* Display: New internal-external facet for event subject */
+  $handler = $view->new_display('search_api_views_facets_block', 'New internal-external facet for event subject', 'search_api_views_facets_block_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Subject';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['facet_field'] = 'field_category';
+
+  /* Display: New internal-external facet for branch */
+  $handler = $view->new_display('search_api_views_facets_block', 'New internal-external facet for branch', 'search_api_views_facets_block_3');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Branch';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['facet_field'] = 'field_event_branch';
+
+  /* Display: New internal-external facet for series */
+  $handler = $view->new_display('search_api_views_facets_block', 'New internal-external facet for series', 'search_api_views_facets_block_4');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Series';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['facet_field'] = 'field_series_1';
+
+  /* Display: New internal-external facet for external venue */
+  $handler = $view->new_display('search_api_views_facets_block', 'New internal-external facet for external venue', 'search_api_views_facets_block_5');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'External venue';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['facet_field'] = 'field_name_of_venue';
+
+  /* Display: New internal-external facet for content type */
+  $handler = $view->new_display('search_api_views_facets_block', 'New internal-external facet for content type', 'search_api_views_facets_block_6');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'In-library or partnered events';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['facet_field'] = 'type';
+  $translatables['new_events_search_api_with_external'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Fulltext search'),
+    t('Events pane'),
+    t('View panes'),
+    t('Embed'),
+    t('New internal-external facet for event language'),
+    t('Language'),
+    t('New internal-external event facet block -- language'),
+    t('New internal-external facet for event subject'),
+    t('Subject'),
+    t('New internal-external facet for branch'),
+    t('Branch'),
+    t('New internal-external facet for series'),
+    t('Series'),
+    t('New internal-external facet for external venue'),
+    t('External venue'),
+    t('New internal-external facet for content type'),
+    t('In-library or partnered events'),
+  );
+  $export['new_events_search_api_with_external'] = $view;
+
+  $view = new view();
   $view->name = 'new_homepage_events';
   $view->description = '';
   $view->tag = 'default';
