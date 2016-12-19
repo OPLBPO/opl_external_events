@@ -125,6 +125,9 @@ function opl_external_events_strongarm() {
         'xmlsitemap' => array(
           'weight' => '2',
         ),
+        'language' => array(
+          'weight' => '5',
+        ),
       ),
       'display' => array(),
     ),

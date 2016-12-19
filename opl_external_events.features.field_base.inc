@@ -350,6 +350,34 @@ function opl_external_events_field_default_field_bases() {
     'type' => 'getlocations_fields',
   );
 
+  // Exported field_base: 'field_external_event_status'.
+  $field_bases['field_external_event_status'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_external_event_status',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        1 => 'Active',
+        2 => 'Cancelled',
+        3 => 'Sold out',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_integer',
+  );
+
   // Exported field_base: 'field_external_register_dest'.
   $field_bases['field_external_register_dest'] = array(
     'active' => 1,

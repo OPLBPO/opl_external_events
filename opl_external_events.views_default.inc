@@ -26,6 +26,8 @@ function opl_external_events_views_default_views() {
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
     15 => '15',
+    38 => '38',
+    37 => '37',
   );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -303,11 +305,6 @@ return $type;';
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Search: Relevance */
-  $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
-  $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_new_event_and_external_event_bundle';
-  $handler->display->display_options['sorts']['search_api_relevance']['field'] = 'search_api_relevance';
-  $handler->display->display_options['sorts']['search_api_relevance']['order'] = 'DESC';
   /* Sort criterion: Indexed Content: Sticky in lists */
   $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
   $handler->display->display_options['sorts']['sticky']['table'] = 'search_api_index_new_event_and_external_event_bundle';
@@ -475,6 +472,11 @@ return $type;';
   $handler->display->display_options['title'] = 'In-library or partnered events';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['facet_field'] = 'type';
+
+  /* Display: New internal-external facet for age group */
+  $handler = $view->new_display('search_api_views_facets_block', 'New internal-external facet for age group', 'search_api_views_facets_block_7');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['facet_field'] = 'field_age_group';
   $translatables['new_events_search_api_with_external'] = array(
     t('Master'),
     t('more'),
@@ -507,6 +509,7 @@ return $type;';
     t('External venue'),
     t('New internal-external facet for content type'),
     t('In-library or partnered events'),
+    t('New internal-external facet for age group'),
   );
   $export['new_events_search_api_with_external'] = $view;
 

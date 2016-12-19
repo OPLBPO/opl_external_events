@@ -61,9 +61,11 @@ function opl_external_events_default_search_api_index() {
       "cron_limit" : "50",
       "fields" : {
         "body:value" : { "type" : "text" },
+        "field_age_group" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_category" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_date_s_" : { "type" : "list\\u003Cdate\\u003E" },
         "field_event_branch" : { "type" : "integer", "entity_type" : "node" },
+        "field_event_dates" : { "type" : "list\\u003Cdate\\u003E" },
         "field_event_language" : { "type" : "string" },
         "field_event_status" : { "type" : "string" },
         "field_name_of_venue" : { "type" : "string" },
