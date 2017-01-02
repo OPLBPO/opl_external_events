@@ -27,6 +27,7 @@ function opl_external_events_views_default_views() {
   $handler->display->display_options['access']['role'] = array(
     15 => '15',
     38 => '38',
+    27 => '27',
     37 => '37',
   );
   $handler->display->display_options['cache']['type'] = 'none';
@@ -132,29 +133,6 @@ function opl_external_events_views_default_views() {
   $handler->display->display_options['sorts']['name']['table'] = 'taxonomy_term_data';
   $handler->display->display_options['sorts']['name']['field'] = 'name';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Taxonomy term: content type (field_content_type) */
-  $handler->display->display_options['arguments']['field_content_type_value']['id'] = 'field_content_type_value';
-  $handler->display->display_options['arguments']['field_content_type_value']['table'] = 'field_data_field_content_type';
-  $handler->display->display_options['arguments']['field_content_type_value']['field'] = 'field_content_type_value';
-  $handler->display->display_options['arguments']['field_content_type_value']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['field_content_type_value']['default_argument_type'] = 'php';
-  $handler->display->display_options['arguments']['field_content_type_value']['default_argument_options']['code'] = '$type = \'\';
-if (arg(0) == \'node\' && arg(1) == \'add\') {
-    $type = arg(2); 
-  }
-elseif (arg(0) == \'node\' && is_numeric(arg(1))) {
-    $nid = arg(1);
-    $node = node_load($nid);
-    $type = $node->type; 
-  }  
-return $type;';
-  $handler->display->display_options['arguments']['field_content_type_value']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_content_type_value']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_content_type_value']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_content_type_value']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['field_content_type_value']['validate']['fail'] = 'ignore';
-  $handler->display->display_options['arguments']['field_content_type_value']['limit'] = '0';
-  $handler->display->display_options['arguments']['field_content_type_value']['transform_dash'] = TRUE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Taxonomy term: Vocabulary */
@@ -187,7 +165,6 @@ return $type;';
     t('- Choose an operation -'),
     t('content type'),
     t('Taxonomy list -- filtered by content type'),
-    t('All'),
     t('Page'),
   );
   $export['new_category_vocabulary_taxonomy_entity_references'] = $view;
