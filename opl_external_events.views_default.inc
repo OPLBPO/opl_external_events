@@ -106,6 +106,8 @@ function opl_external_events_views_default_views() {
   /* Display: Taxonomy list -- filtered by content type */
   $handler = $view->new_display('entityreference', 'Taxonomy list -- filtered by content type', 'entityreference_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['defaults']['access'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '0';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -218,7 +220,6 @@ function opl_external_events_views_default_views() {
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_new_event_and_external_event_bundle';
   $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
-  $handler->display->display_options['filters']['search_api_views_fulltext']['operator'] = 'OR';
   $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
   $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
@@ -270,6 +271,16 @@ function opl_external_events_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Events pane', 'panel_pane_1');
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'masonry';
+  $handler->display->display_options['defaults']['cache'] = FALSE;
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '300';
+  $handler->display->display_options['cache']['results_lifespan_custom'] = '0';
+  $handler->display->display_options['cache']['output_lifespan'] = '300';
+  $handler->display->display_options['cache']['output_lifespan_custom'] = '0';
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Clear results';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
@@ -281,6 +292,7 @@ function opl_external_events_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Indexed Content: Sticky in lists */
   $handler->display->display_options['sorts']['sticky']['id'] = 'sticky';
@@ -320,9 +332,50 @@ function opl_external_events_views_default_views() {
   $handler->display->display_options['filters']['field_event_status']['value'] = array(
     'cancelled' => 'cancelled',
   );
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search programs';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'text';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    15 => 0,
+    1 => 0,
+    24 => 0,
+    12 => 0,
+    14 => 0,
+    21 => 0,
+    26 => 0,
+    4 => 0,
+    17 => 0,
+    27 => 0,
+    30 => 0,
+    31 => 0,
+    33 => 0,
+    34 => 0,
+    35 => 0,
+    36 => 0,
+    37 => 0,
+    38 => 0,
+    39 => 0,
+    40 => 0,
+    41 => 0,
+    42 => 0,
+    43 => 0,
+  );
 
   /* Display: Embed */
   $handler = $view->new_display('embed', 'Embed', 'embed_1');
+  $handler->display->display_options['defaults']['cache'] = FALSE;
+  $handler->display->display_options['cache']['type'] = 'search_api_views_cache';
+  $handler->display->display_options['cache']['results_lifespan'] = '300';
+  $handler->display->display_options['cache']['results_lifespan_custom'] = '0';
+  $handler->display->display_options['cache']['output_lifespan'] = '300';
+  $handler->display->display_options['cache']['output_lifespan_custom'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['row_class'] = 'search-result-item';
@@ -352,7 +405,6 @@ function opl_external_events_views_default_views() {
   $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_new_event_and_external_event_bundle';
   $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
-  $handler->display->display_options['filters']['search_api_views_fulltext']['operator'] = 'OR';
   $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
   $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
@@ -428,6 +480,7 @@ function opl_external_events_views_default_views() {
   $handler->display->display_options['title'] = 'Branch';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['facet_field'] = 'field_event_branch';
+  $handler->display->display_options['hide_block'] = 0;
 
   /* Display: New internal-external facet for series */
   $handler = $view->new_display('search_api_views_facets_block', 'New internal-external facet for series', 'search_api_views_facets_block_4');
@@ -454,6 +507,97 @@ function opl_external_events_views_default_views() {
   $handler = $view->new_display('search_api_views_facets_block', 'New internal-external facet for age group', 'search_api_views_facets_block_7');
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['facet_field'] = 'field_age_group';
+
+  /* Display: Embed with search */
+  $handler = $view->new_display('embed', 'Embed with search', 'embed_2');
+  $handler->display->display_options['defaults']['cache'] = FALSE;
+  $handler->display->display_options['cache']['type'] = 'search_api_views_cache';
+  $handler->display->display_options['cache']['results_lifespan'] = '300';
+  $handler->display->display_options['cache']['results_lifespan_custom'] = '0';
+  $handler->display->display_options['cache']['output_lifespan'] = '300';
+  $handler->display->display_options['cache']['output_lifespan_custom'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'search-result-item';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Rendered Content */
+  $handler->display->display_options['fields']['rendered_entity']['id'] = 'rendered_entity';
+  $handler->display->display_options['fields']['rendered_entity']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['rendered_entity']['field'] = 'rendered_entity';
+  $handler->display->display_options['fields']['rendered_entity']['label'] = '';
+  $handler->display->display_options['fields']['rendered_entity']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['rendered_entity']['link_to_entity'] = 1;
+  $handler->display->display_options['fields']['rendered_entity']['display'] = 'view';
+  $handler->display->display_options['fields']['rendered_entity']['view_mode'] = 'search_result';
+  $handler->display->display_options['fields']['rendered_entity']['bypass_access'] = 0;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'AND',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Search: Fulltext search */
+  $handler->display->display_options['filters']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['group'] = 1;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Fulltext search';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'text';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
+    2 => '2',
+    15 => 0,
+    1 => 0,
+    24 => 0,
+    12 => 0,
+    14 => 0,
+    21 => 0,
+    26 => 0,
+    4 => 0,
+    17 => 0,
+    27 => 0,
+    30 => 0,
+    31 => 0,
+    33 => 0,
+    34 => 0,
+    35 => 0,
+    36 => 0,
+    37 => 0,
+    38 => 0,
+    39 => 0,
+    40 => 0,
+    41 => 0,
+    42 => 0,
+  );
+  /* Filter criterion: Indexed Content: Upcoming Event Dates */
+  $handler->display->display_options['filters']['upcoming_dates']['id'] = 'upcoming_dates';
+  $handler->display->display_options['filters']['upcoming_dates']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['upcoming_dates']['field'] = 'upcoming_dates';
+  $handler->display->display_options['filters']['upcoming_dates']['operator'] = '>=';
+  $handler->display->display_options['filters']['upcoming_dates']['value'] = 'now';
+  $handler->display->display_options['filters']['upcoming_dates']['group'] = 1;
+  /* Filter criterion: Indexed Content: Content type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'external_event' => 'external_event',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 2;
+  /* Filter criterion: Indexed Content: Date(s) */
+  $handler->display->display_options['filters']['field_date_s_']['id'] = 'field_date_s_';
+  $handler->display->display_options['filters']['field_date_s_']['table'] = 'search_api_index_new_event_and_external_event_bundle';
+  $handler->display->display_options['filters']['field_date_s_']['field'] = 'field_date_s_';
+  $handler->display->display_options['filters']['field_date_s_']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_date_s_']['value'] = 'now';
+  $handler->display->display_options['filters']['field_date_s_']['group'] = 2;
   $translatables['new_events_search_api_with_external'] = array(
     t('Master'),
     t('more'),
@@ -471,6 +615,8 @@ function opl_external_events_views_default_views() {
     t('last »'),
     t('Fulltext search'),
     t('Events pane'),
+    t('Clear results'),
+    t('Search programs'),
     t('View panes'),
     t('Embed'),
     t('New internal-external facet for event language'),
@@ -487,6 +633,7 @@ function opl_external_events_views_default_views() {
     t('New internal-external facet for content type'),
     t('In-library or partnered events'),
     t('New internal-external facet for age group'),
+    t('Embed with search'),
   );
   $export['new_events_search_api_with_external'] = $view;
 

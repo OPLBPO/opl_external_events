@@ -53,11 +53,11 @@ function opl_external_events_default_search_api_index() {
     "name" : "New event and external event bundle",
     "machine_name" : "new_event_and_external_event_bundle",
     "description" : null,
-    "server" : "tomcat_solr",
+    "server" : "solr_6_prod",
     "item_type" : "node",
     "options" : {
       "datasource" : { "bundles" : [ "event", "external_event" ] },
-      "index_directly" : 0,
+      "index_directly" : 1,
       "cron_limit" : "50",
       "fields" : {
         "body:value" : { "type" : "text" },
@@ -134,9 +134,9 @@ function opl_external_events_default_search_api_index() {
           }
         },
         "search_api_transliteration" : {
-          "status" : 0,
+          "status" : 1,
           "weight" : "15",
-          "settings" : { "fields" : { "title" : true, "title_field" : true } }
+          "settings" : { "fields" : { "title" : true, "title_field" : true, "body:value" : true } }
         },
         "search_api_tokenizer" : {
           "status" : 0,
