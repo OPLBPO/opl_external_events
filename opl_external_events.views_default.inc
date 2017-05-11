@@ -656,7 +656,7 @@ function opl_external_events_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '2';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['row_class'] = 'item';
@@ -714,6 +714,11 @@ function opl_external_events_views_default_views() {
   $handler->display->display_options['filters']['field_date_s__value']['operator'] = '>=';
   $handler->display->display_options['filters']['field_date_s__value']['group'] = 2;
   $handler->display->display_options['filters']['field_date_s__value']['default_date'] = 'now';
+  /* Filter criterion: Content: Sticky */
+  $handler->display->display_options['filters']['sticky']['id'] = 'sticky';
+  $handler->display->display_options['filters']['sticky']['table'] = 'node';
+  $handler->display->display_options['filters']['sticky']['field'] = 'sticky';
+  $handler->display->display_options['filters']['sticky']['value'] = '1';
   $translatables['new_homepage_events'] = array(
     t('Master'),
     t('more'),

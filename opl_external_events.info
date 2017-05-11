@@ -4,7 +4,6 @@ package = OPL Custom
 version = 7.x-1.0
 dependencies[] = getlocations_fields
 dependencies[] = opl_programs_events
-dependencies[] = strongarm
 features[ctools][] = facetapi:facetapi_defaults:1
 features[ctools][] = page_manager:pages_default:1
 features[ctools][] = strongarm:strongarm:1
